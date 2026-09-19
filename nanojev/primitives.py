@@ -59,8 +59,9 @@ class Score:
     model that is torn between "calm" and "frustrated" should say so by landing
     between them, not by picking a side.
 
-    Needs at least two levels. Jev caps these at ten, and the reasoning applies
-    here too: levels only help while you can still describe each one distinctly.
+    Needs at least two levels. Hosted implementations cap these around ten, and
+    the reasoning applies here too: levels only help while you can still
+    describe each one distinctly.
     """
 
     instructions: str

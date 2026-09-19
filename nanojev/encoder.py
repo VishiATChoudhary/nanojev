@@ -1,10 +1,10 @@
 """An encoder backend behind the same API, because the evidence pointed here.
 
-When Jev launched, the most common guess on Hacker News was that it is an
-encoder with classification heads rather than a new class of model (the
-GLiNER / GLiClass / deberta-zeroshot family). Measuring it locally supported
-that guess: an off-the-shelf 184M zero-shot encoder beat our 0.6B decoder
-logit-read by 24 accuracy points on banking77, and arrived already calibrated.
+The common guess about hosted decision models is that they are encoders with
+classification heads rather than a new class of model (the GLiNER / GLiClass /
+deberta-zeroshot family). Measuring it locally supports that guess: an
+off-the-shelf 184M zero-shot encoder beats our 0.6B decoder logit-read on
+banking77 and arrives already calibrated.
 
 So this exposes that path through the identical Choice / Score / Noul API. The
 entire premise of a typed decision layer is that callers should not have to care
