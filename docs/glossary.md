@@ -90,8 +90,7 @@ Brier decomposes into three parts (Murphy, 1973):
 *perfectly* calibrated and completely useless. Great reliability, zero resolution.
 
 So a calibration number with no accuracy number beside it cannot be interpreted.
-This is why every ECE in our README has an accuracy printed next to it, and why
-it's notable that TypeSafe published no calibration figures at all.
+This is why every ECE in this project is reported with an accuracy next to it.
 
 ### Discrimination
 
@@ -148,12 +147,12 @@ perfectly-calibrated model above.
 |---|---|---|
 | **LLM** | Large Language Model | The normal kind. Writes text one token at a time. |
 | **RLHF** | Reinforcement Learning from Human Feedback | Standard tuning method: reward answers humans prefer. Known to *damage* calibration, because humans prefer confident answers. |
-| **RLCD** | Reinforcement Learning for Calibrated Decisions | TypeSafe's training method. Rewards honest probabilities instead of human preference. **Undisclosed — no paper.** |
+| **RLCD** | Reinforcement Learning for Calibrated Decisions | Training that rewards honest probabilities rather than human preference. Named in a commercial launch; no paper published. |
 | **RLCR** | Reinforcement Learning with Calibration Rewards | The published version of essentially that idea (arXiv:2507.16806, 2025). Reward = correctness + Brier. |
 | **ECE** | Expected Calibration Error | See above. |
 | **NLL** | Negative Log Likelihood | See above. |
 | **NLI** | Natural Language Inference | "Does sentence A imply sentence B?" How our encoder backend scores options. Its limitation: it's *literal*. |
-| **DX** | Developer Experience | How pleasant something is to build against. Arguably Jev's real product. |
+| **DX** | Developer Experience | How pleasant something is to build against. |
 | **KV cache** | Key/Value cache | Stored intermediate results so the model doesn't re-read the same text repeatedly. |
 | **SDPA** | Scaled Dot-Product Attention | A memory-efficient attention implementation. Without it, long inputs allocate enormous matrices and crash. |
 | **MPS** | Metal Performance Shaders | Apple's GPU backend. What we run on. |
@@ -169,7 +168,7 @@ perfectly-calibrated model above.
 
 A chunk of text, roughly a short word or word-piece. Models read and write in
 tokens, and APIs bill per token. "Input tokens" = what you send; "output tokens" =
-what the model writes. Jev's output is free because it writes nothing.
+what the model writes. A decision model's output is free because it writes nothing.
 
 ### Logits
 
@@ -187,8 +186,8 @@ get exponentially more of the mass.
 ### Autoregressive
 
 Generating one token at a time, each one conditioned on all the previous ones. The
-reason normal LLMs are slow: 100 tokens means 100 sequential passes. Jev's pitch
-is being *non*-autoregressive.
+reason normal LLMs are slow: 100 tokens means 100 sequential passes. Decision
+models are pitched on being *non*-autoregressive.
 
 ### Prefill vs decode
 
@@ -200,7 +199,8 @@ That's the entire speed story.
 
 **Decoder** — built to generate text (Qwen3-0.6B here). **Encoder** — built to
 understand text and output a score, never generating (deberta here). Classifiers
-are traditionally encoders, which is why so many people guessed Jev is one.
+are traditionally encoders, which is why decision models are widely assumed
+to be encoders underneath.
 
 ### Zero-shot
 
@@ -232,9 +232,7 @@ your probabilities against.
 
 ## Part 4: named things
 
-- **Jev** — TypeSafe's model. Named after **William Stanley Jevons** (Jevons paradox: efficiency raises total demand).
-- **System One** — from Kahneman's *Thinking, Fast and Slow*. System 1 is fast and intuitive, System 2 slow and deliberate. The pitch: reasoning LLMs are System 2, and nobody built the machine-facing System 1.
-- **Noul** — short for **Bernoulli**, the coin-flip distribution. The three primitives map to code: Choice→`match`, Score→sort key, Noul→`if`.
-- **GLiNER2 / GLiClass** — existing open encoder models taking a runtime-defined schema and returning structured output in one pass. The closest published prior art (arXiv:2507.18546).
-- **banking77** — public dataset of 13,083 bank-support messages across 77 intents. Our test set.
-- **InstructGPT** — arXiv:2203.02155, ChatGPT's direct ancestor. Almeida is 4th of 20 authors.
+- **System One model** — the commercial framing for this class of model, after Kahneman's *Thinking, Fast and Slow*: System 1 is fast and intuitive, System 2 slow and deliberate. The argument is that reasoning LLMs are System 2 and the machine-facing System 1 was missing.
+- **Noul** — short for **Bernoulli**, the coin-flip distribution. The three question types map onto code: Choice→`match`, Score→sort key, Noul→`if`.
+- **GLiNER2 / GLiClass** — existing open encoder models taking a runtime-defined schema and returning structured output in one pass. The closest published prior art ([arXiv:2507.18546](https://arxiv.org/abs/2507.18546)).
+- **banking77** — public dataset of 13,083 bank-support messages across 77 intents. The test set used throughout.

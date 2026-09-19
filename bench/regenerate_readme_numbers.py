@@ -53,14 +53,14 @@ def timeit(fn, warmup=3, runs=10):
 def main() -> None:
     dec, enc = SystemOne(), EncoderSystemOne()
 
-    print("### 1. Jev quickstart parity")
+    print("### 1. Quickstart parity vs the hosted reference")
     for name, c in (("decoder", dec), ("encoder", enc)):
         a = c.decide(CANONICAL, TRIAGE).answers
         print(
             f"  {name:>8}: department={a['department'].choice:<10} "
             f"frustration={a['frustration'].score:.3f}  is_urgent={a['is_urgent'].noul:.3f}"
         )
-    print("  Jev ref : department=technical  frustration=1.035   is_urgent=0.999")
+    print("  hosted  : department=technical  frustration=1.035   is_urgent=0.999")
 
     print("\n### 2. Latency, three questions, one state")
     for name, c in (("decoder", dec), ("encoder", enc)):

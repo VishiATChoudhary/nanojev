@@ -100,9 +100,9 @@ decoder. That number was Hugging Face's convenience pipeline running twenty
 unbatched passes, not the method. Batched properly through the same API, the
 encoder is roughly **twice as fast**.
 
-This is the same class of error the launch evaluation was criticised for — an
-uncharitable baseline flattering the thing you built. It took an hour to repeat
-it, and it was only caught by re-measuring.
+This is the classic benchmarking error — an uncharitable baseline flattering the
+thing you built — and I had just finished reading criticism of exactly it
+elsewhere. It took an hour to repeat, and was only caught by re-measuring.
 
 ## A test case that tested nothing
 

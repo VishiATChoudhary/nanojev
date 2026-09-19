@@ -1,9 +1,9 @@
 """Is a decoder reading its own logits actually better than an encoder classifier?
 
-The loudest hypothesis on Hacker News was that Jev is an encoder-only model with
-classification heads, the GLiNER / GLiClass / deberta-zeroshot family, rather
-than a new class of model. That is a testable claim, so this tests the local
-version of it: same dataset, same labels, same metrics, one decoder reading
+The common hypothesis about decision models is that they are encoder-only models
+with classification heads - the GLiNER / GLiClass / deberta-zeroshot family -
+rather than a new class of model. That is a testable claim, so this tests the
+local version of it: same dataset, same labels, same metrics, one decoder reading
 label logits versus one off-the-shelf zero-shot encoder.
 
 Whatever wins, the comparison is the honest one to make before calling either

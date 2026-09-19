@@ -1,9 +1,9 @@
 """Does the central System One claim hold on a laptop?
 
-TypeSafe says questions are evaluated in parallel so "adding questions barely
-changes the response time", and that skipping generation buys 20-200x. Both are
-measurable. This reports what actually happens, including where the claim is
-weaker than the marketing.
+Models in this category claim questions are evaluated in parallel, so adding
+questions "barely changes the response time", and that skipping generation buys
+20-200x. Both are measurable. This reports what actually happens locally,
+including where the claim turns out weaker than advertised.
 """
 
 from __future__ import annotations

@@ -6,8 +6,8 @@ Our smoke test opened with `is_urgent = 1.000`, which is a model asserting
 certainty it has not earned, and that is precisely the failure that makes people
 put a human back in the loop.
 
-TypeSafe trains for this with RL against a proper scoring rule (they call it
-RLCD). We are not going to run RL on a laptop, and we do not need to: post-hoc
+The commercial approach is to train for this with RL against a proper scoring
+rule. We are not going to run RL on a laptop, and we do not need to: post-hoc
 temperature scaling (Guo et al. 2017, arXiv:1706.04599) recovers most of the
 available calibration from a few hundred labelled examples and a single scalar.
 It cannot make the model smarter, only more honest about what it knows, which

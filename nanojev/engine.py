@@ -269,9 +269,9 @@ class SystemOne:
         """Answer every question, splitting any that exceed the label budget.
 
         Questions with more options than we have single-token labels are handled
-        in two stages, which is the same shape TypeSafe describes for Choice
-        beyond 255: "we do a 2 stage-system of scoring independently then making
-        an explicit choice".
+        in two stages: score independently within groups, then make an explicit
+        choice between the group winners. This is the same shape commercial
+        models of this kind use beyond their own option limit.
         """
         oversized = {
             k: q for k, q in questions.items() if len(q.options) > self.max_options

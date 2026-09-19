@@ -1,4 +1,8 @@
-"""Jev's own quickstart example, run against a local model."""
+"""The canonical support-triage example, run against a local model.
+
+The same ticket and questions a commercial decision-model quickstart uses, so the
+output here can be compared against a hosted one directly.
+"""
 
 from nanojev import Choice, Noul, Score, SystemOne
 
@@ -42,4 +46,4 @@ print(f"department  = {d.choice!r}  conf={d.confidence:.3f}  {({k: round(v,3) fo
 print(f"frustration = {f.score:.3f}  conf={f.confidence:.3f}")
 print(f"is_urgent   = {u.noul:.3f}  conf={u.confidence:.3f}")
 print(f"\nlatency={resp.latency_ms:.0f}ms  input_tokens={resp.input_tokens}  sequences={resp.sequences}")
-print("Jev reference:  department='technical'  frustration=1.035  is_urgent=0.999")
+print("hosted reference:  department='technical'  frustration=1.035  is_urgent=0.999")

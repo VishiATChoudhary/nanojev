@@ -1,4 +1,4 @@
-"""Question types for nanojev. Mirrors TypeSafe Jev's Choice / Score / Noul.
+"""Question types: Choice, Score and Noul.
 
 Every question type must be able to enumerate its complete answer space before
 the model runs. That is the whole trick: if the set of legal answers is known up
@@ -78,10 +78,9 @@ class Score:
 class Noul:
     """A yes/no question, answered with a probability rather than a boolean.
 
-    Named after Jev's own primitive, where "noul" is short for bernoulli. Its
-    three types map onto control flow: a Choice is a match statement, a Score is
-    a sort key, a Noul is an if. Collapsing to a bool is the caller's job, and
-    the threshold is theirs to pick.
+    "Noul" is short for bernoulli. The three question types map onto control
+    flow: a Choice is a match statement, a Score is a sort key, a Noul is an if.
+    Collapsing to a bool is the caller's job, and the threshold is theirs.
     """
 
     instructions: str

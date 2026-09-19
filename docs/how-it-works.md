@@ -102,7 +102,8 @@ single-token labels (52 for Qwen3). Beyond that, questions are split in two
 stages: score within groups, then choose between the group winners, combining as
 `P(option) = P(group) × P(option | group)`.
 
-This mirrors what TypeSafe describes for Jev beyond 255 options. The result
+This mirrors the two-stage approach described for commercial models of this kind
+beyond their own option limit. The result
 stays a proper normalised distribution, so calibration applies unchanged through
 it. Verified on 120 synthetic options and on all 77 banking77 intents.
 
