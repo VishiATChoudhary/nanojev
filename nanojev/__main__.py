@@ -13,6 +13,10 @@ from __future__ import annotations
 import argparse
 import sys
 
+from ._quiet import quiet
+
+quiet()
+
 from . import Choice, EncoderSystemOne, Noul, Score, SystemOne
 
 # The same question set used in the README and in bench/, so the documented

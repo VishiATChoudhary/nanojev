@@ -2,6 +2,8 @@
 
 # nanojev
 
+### Never let your LLM finish a sentence.
+
 **Typed, calibrated decisions from a local model. No token generation.**
 
 [![ci](https://github.com/VishiATChoudhary/nanojev/actions/workflows/ci.yml/badge.svg)](https://github.com/VishiATChoudhary/nanojev/actions/workflows/ci.yml)
@@ -40,6 +42,34 @@ $ uv run nanojev --demo
   frustration   0.74 / 2       ███████░░░░░░░░░░░░░
   is_urgent      68.9%        ██████████████░░░░░░
 ```
+
+## The use case
+
+Ten support messages. Route each one, and **auto-handle only the ones the model
+is genuinely sure about** — then check the promise against reality.
+
+<p align="center">
+  <img src="docs/assets/triage.gif" alt="confidence-gated inbox triage" width="100%">
+</p>
+
+```bash
+uv run python examples/triage_inbox.py
+```
+
+Seven of ten cleared without a human, at 126 ms each. It promised 93.1% accuracy
+on those seven and delivered 100%. The three it escalated are genuinely the
+ambiguous ones — a pricing question that could be sales or billing, a login
+problem that could be account or technical.
+
+That is the entire pitch. Not "the model is smart": **the model knows when it
+isn't**, so you can stop reading the inbox above your threshold and trust that
+decision.
+
+It also shows why there are two backends. Routing is a `Choice`, where the
+encoder is more accurate. *"Is this customer angry?"* is an inferential claim,
+where the encoder is useless — it scores ~0.00 on every message, because tone is
+not literally entailed by the text — and the decoder works. Each question goes
+to the backend suited to it, behind one identical API.
 
 ## Install
 
@@ -215,6 +245,7 @@ uv run pytest                                    # 18 tests, no model download
 uv run python bench/equivalence.py               # cached path == plain path
 uv run python bench/calibration_eval.py --backend encoder
 uv run python bench/latency.py
+uv run python examples/triage_inbox.py --threshold 0.9 --backend decoder
 ```
 
 | | |
